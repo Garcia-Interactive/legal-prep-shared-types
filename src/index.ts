@@ -1,4 +1,6 @@
 export * from './document';
+export * from './document-categories';
+export * from './mediation';
 export type { paths, components } from './api';
 
 // Helpful top-level aliases for common schema types

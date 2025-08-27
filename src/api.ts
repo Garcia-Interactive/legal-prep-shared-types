@@ -130,61 +130,2347 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/auth/sign-up/email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Sign up with email and password
+         * @description Create a new user account with email/password and organization data. Authentication is handled via secure session cookies. Returns user, session (with token, expiry, etc.), and organization information.
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["SignUpRequest"];
+                };
+            };
+            responses: {
+                /** @description User created successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AuthResponse"];
+                    };
+                };
+                /** @description Bad request - Invalid input data */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"];
+                    };
+                };
+                /** @description Conflict - User already exists */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/sign-in/email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Sign in with email and password
+         * @description Authenticate user with email/password. Authentication is handled via secure session cookies. Returns user, session (with token, expiry, etc.), and organization information.
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["SignInRequest"];
+                };
+            };
+            responses: {
+                /** @description User authenticated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AuthResponse"];
+                    };
+                };
+                /** @description Bad request - Invalid credentials */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"];
+                    };
+                };
+                /** @description Unauthorized - Invalid email or password */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/sign-out": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Sign out the current user
+         * @description Sign out the current user and clear session cookies. Returns a success confirmation.
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Successfully signed out */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["SignOutResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/email/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Check if email exists
+         * @description Check if a user with the given email address already exists in the database. This is a public endpoint that doesn't require authentication.
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["EmailVerificationRequest"];
+                };
+            };
+            responses: {
+                /** @description Email existence check completed successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["EmailVerificationResponse"];
+                    };
+                };
+                /** @description Bad request - Invalid email format */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"];
+                    };
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/profiles/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get current user profile
+         * @description Get current user profile with workspace context
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Profile retrieved successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ProfileResponse"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Profile not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        /**
+         * Update current user profile
+         * @description Update current user profile information (centralized endpoint for all profile updates)
+         */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["UpdateProfileRequest"];
+                };
+            };
+            responses: {
+                /** @description Profile updated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["UpdateProfileResponse"];
+                    };
+                };
+                /** @description Invalid request data */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Profile not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/files/upload": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "multipart/form-data": components["schemas"]["UploadFileFormData"];
+                };
+            };
+            responses: {
+                /** @description File uploaded successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["UploadFileResponse"];
+                    };
+                };
+                /** @description Bad request - validation errors or file processing failed */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized - authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Payload too large - file size exceeds limit */
+                413: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/files/{file_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    fileId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description File metadata and download URL */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["GetFileResponse"];
+                    };
+                };
+                /** @description Unauthorized - authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden - insufficient permissions */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description File not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    fileId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description File deleted successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DeleteResponse"];
+                    };
+                };
+                /** @description Unauthorized - authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden - insufficient permissions */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description File not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/logs/by-path": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get API logs by specific path
+         * @description Retrieve API logs filtered by a specific path with enhanced performance optimization. Requires x-api-key header for authentication.
+         */
+        get: {
+            parameters: {
+                query: {
+                    /** @description The exact path to filter logs by (e.g., '/v1/auth/signin') */
+                    path: string;
+                    page?: number;
+                    limit?: number;
+                    /** @description HTTP method filter */
+                    method?: string;
+                    /** @description HTTP status code filter */
+                    statusCode?: number | null;
+                    /** @description Filter logs from this date */
+                    fromDate?: string;
+                    /** @description Filter logs to this date */
+                    toDate?: string;
+                };
+                header: {
+                    /** @description API key for logs access */
+                    "x-api-key": string;
+                };
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description API logs filtered by path */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["LogsByPathResponse"];
+                    };
+                };
+                /** @description Validation error */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized - Invalid or missing API key */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/logs/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get API log details
+         * @description Retrieve detailed information for a specific API log entry. Requires x-api-key header for authentication.
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header: {
+                    /** @description API key for logs access */
+                    "x-api-key": string;
+                };
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description API log details */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["LogDetail"];
+                    };
+                };
+                /** @description Unauthorized - Invalid or missing API key */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Log not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Internal server error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/current": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get current organization
+         * @description Get details of the current user's organization/workspace
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Organization details retrieved successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["OrganizationResponse"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Organization not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+            };
+        };
+        /**
+         * Update current organization
+         * @description Update details of the current user's organization/workspace. Requires admin role or higher.
+         */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Organization update data */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["UpdateOrganizationRequest"];
+                };
+            };
+            responses: {
+                /** @description Organization updated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["OrganizationResponse"];
+                    };
+                };
+                /** @description Invalid request data */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Insufficient permissions */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+            };
+        };
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/current/members": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List organization members
+         * @description Get a list of all members in the current organization
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Members list retrieved successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MembersListResponse"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Invite new member
+         * @description Invite a new member to the organization. Requires admin role or higher.
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Member invitation data */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["InviteMemberRequest"];
+                };
+            };
+            responses: {
+                /** @description Member invited successfully */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            id: string;
+                            organizationId: string;
+                            email: string;
+                            role: string;
+                            status: string;
+                            inviterId: string;
+                            expiresAt: string;
+                        };
+                    };
+                };
+                /** @description Invalid request data */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Insufficient permissions */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/current/invitations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List organization invitations
+         * @description Get a list of all pending invitations for the current organization. Requires admin role or higher. Optionally filter by email.
+         */
+        get: {
+            parameters: {
+                query?: {
+                    email?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Invitations list retrieved successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["InvitationsListResponse"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Insufficient permissions */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/invitations/user": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List user invitations by email
+         * @description Get a list of all invitations for a specific user email across all organizations. Requires admin role or higher.
+         */
+        get: {
+            parameters: {
+                query: {
+                    email: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description User invitations retrieved successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["InvitationsListResponse"];
+                    };
+                };
+                /** @description Email parameter is required */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Insufficient permissions */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/current/members/{memberIdOrEmail}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Remove member
+         * @description Remove a member from the organization. Requires admin role or higher.
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    memberIdOrEmail: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Member removed successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["SuccessResponse"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Insufficient permissions */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Member not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/current/members/{memberId}/role": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Update member role
+         * @description Update a member's role within the organization. Requires owner role.
+         */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    memberId: string;
+                };
+                cookie?: never;
+            };
+            /** @description Member role update data */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["UpdateMemberRoleRequest"];
+                };
+            };
+            responses: {
+                /** @description Member role updated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Member"];
+                    };
+                };
+                /** @description Invalid request data */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Insufficient permissions */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Member not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+            };
+        };
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/invitations/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Accept organization invitation
+         * @description Accept an invitation to join an organization
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Invitation acceptance data */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["AcceptInvitationRequest"];
+                };
+            };
+            responses: {
+                /** @description Invitation accepted successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["SuccessResponse"];
+                    };
+                };
+                /** @description Invalid request data */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Invitation not found or expired */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/invitations/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Cancel organization invitation
+         * @description Cancel a pending invitation to join an organization. Requires admin role or higher.
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Invitation cancellation data */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["CancelInvitationRequest"];
+                };
+            };
+            responses: {
+                /** @description Invitation canceled successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["SuccessResponse"];
+                    };
+                };
+                /** @description Invalid request data */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Insufficient permissions */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Invitation not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/invitations/reject": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Reject organization invitation
+         * @description Reject an invitation to join an organization
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            /** @description Invitation rejection data */
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["RejectInvitationRequest"];
+                };
+            };
+            responses: {
+                /** @description Invitation rejected successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["SuccessResponse"];
+                    };
+                };
+                /** @description Invalid request data */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+                /** @description Invitation not found or expired */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ErrorResponse"] & {
+                            /** @enum {boolean} */
+                            success: false;
+                            error: string;
+                            details?: unknown;
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/passkey/register": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Start passkey registration */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["PasskeyRegistrationStartRequest"];
+                };
+            };
+            responses: {
+                /** @description Registration options */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["PasskeyRegistrationOptions"];
+                    };
+                };
+                /** @description Unauthorized */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/passkey/register/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Verify passkey registration */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["PasskeyVerifyRegistrationRequest"];
+                };
+            };
+            responses: {
+                /** @description Verification result */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["PasskeyVerifyRegistrationResponse"];
+                    };
+                };
+                /** @description Invalid input */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/passkey/authenticate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Start passkey authentication */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["PasskeyAuthenticationStartRequest"];
+                };
+            };
+            responses: {
+                /** @description Authentication options */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["PasskeyAuthenticationOptions"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/passkey/authenticate/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Verify passkey authentication */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["PasskeyVerifyAuthenticationRequest"];
+                };
+            };
+            responses: {
+                /** @description Verification result */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["PasskeyVerifyAuthenticationResponse"];
+                    };
+                };
+                /** @description Authentication failed */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/passkeys": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List current user's passkeys */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description List of passkeys */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            id: string;
+                            name: string;
+                            createdAt?: string | null;
+                            lastUsed?: string | null;
+                            /** @enum {string|null} */
+                            authenticatorType?: "platform" | "cross-platform" | null;
+                        }[];
+                    };
+                };
+                /** @description Unauthorized */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/passkeys/:id": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete a user's passkey */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Deletion success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            success: boolean;
+                            message: string;
+                        };
+                    };
+                };
+                /** @description Unauthorized */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/passkey/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Passkey status */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Status */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            webauthn_enabled: boolean;
+                            rp_id: string;
+                            environment: string;
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
-
+export type webhooks = Record<string, never>;
 export interface components {
-  schemas: {
-    // Common/API meta
-    ApiIndex: any;
-    HealthCheck: any;
-    ApiClientResponse: any;
-    ApiClientError: any;
-
-    // Auth
-    SignUpRequest: any;
-    AuthResponse: any; // used in authResponseToSessionResponse
-    ErrorResponse: any;
-    SignInRequest: any;
-    SignOutResponse: any;
-    EmailVerificationRequest: any;
-    EmailVerificationResponse: any;
-
-    // Profile
-    ProfileResponse: any;
-    UpdateProfileRequest: any;
-    UpdateProfileResponse: any;
-    ProfilePreferences: any;
-
-    // Files
-    File: any;
-    UploadFileRequest: any;
-    UploadFileResponse: any;
-    GetFileResponse: any;
-    DeleteResponse: any;
-
-    // Listings
-    ListingResponse: any;
-    ListingListResponse: any;
-    SingleListingResponse: any;
-    CreateListingRequest: any;
-    UpdateListingRequest: any;
-    SaveDraftListingRequest: any;
-    BulkCreateResponse: any;
-
-    // Organization / Members
-    Organization: any;
-    UpdateOrganizationRequest: any;
-    MembersListResponse: any;
-    InviteMemberRequest: any;
-    UpdateMemberRoleRequest: any;
-    AcceptInvitationRequest: any;
-    SuccessResponse: any;
-    InvitationsListResponse: any;
-    Invitation: any;
-    Member: any; // used in MembersList UI
-
-    // Reports
-    QuarterlyReportRequest: any;
-    ListingReportRequest: any;
-  };
+    schemas: {
+        ApiIndex: {
+            message: string;
+            version: string;
+            documentation: string;
+            endpoints: {
+                health: string;
+                docs: string;
+                reference: string;
+            };
+        };
+        HealthCheck: {
+            status: string;
+            timestamp: string;
+            uptime: number;
+            version: string;
+        };
+        ApiClientResponse: {
+            version: string;
+            client: string;
+            types: string;
+            usage: {
+                installation: string;
+                basicUsage: string;
+                authentication: string;
+                examples: {
+                    title: string;
+                    code: string;
+                }[];
+            };
+        };
+        ApiClientError: {
+            error: string;
+            message: string;
+        };
+        User: {
+            id: string;
+            /** Format: email */
+            email: string;
+            name: string;
+            image: string | null;
+            emailVerified: boolean;
+            createdAt: string;
+            updatedAt: string;
+            role: string | null;
+            banned: boolean | null;
+            banReason: string | null;
+            banExpires: string | null;
+        };
+        Session: {
+            id: string;
+            userId: string;
+            expiresAt: string;
+            token: string;
+            ipAddress: string | null;
+            userAgent: string | null;
+            activeOrganizationId: string | null;
+            createdAt: string;
+            updatedAt: string;
+            impersonatedBy: string | null;
+        } | null;
+        Organization: {
+            id: string;
+            name: string;
+            slug: string | null;
+            logo: string | null;
+            companyType: string | null;
+            metadata: string | null;
+            createdAt: string;
+        } | null;
+        UserProfile: {
+            id: string;
+            userId: string | null;
+            organizationId: string | null;
+            firstName: string | null;
+            lastName: string | null;
+            displayName: string | null;
+            phone: string | null;
+            licenseNumber: string | null;
+            website: string | null;
+            businessAddress: string | null;
+            marketingConsent: boolean | null;
+            termsAccepted: boolean | null;
+            termsAcceptedAt: string | null;
+            avatarUrl: string | null;
+            bio: string | null;
+            specialties: string[] | null;
+            isActive: boolean;
+            preferences: {
+                [key: string]: unknown;
+            } | null;
+            createdAt: string;
+            updatedAt: string;
+            joinedAt: string | null;
+            lastLoginAt: string | null;
+        } | null;
+        AuthResponse: {
+            user: components["schemas"]["User"];
+            session: components["schemas"]["Session"];
+            organization: components["schemas"]["Organization"];
+            profile: components["schemas"]["UserProfile"];
+        };
+        ErrorResponse: {
+            message: string;
+            code?: string;
+        };
+        SignUpRequest: {
+            firstName: string;
+            lastName: string;
+            /** Format: email */
+            email: string;
+            companyName: string;
+            /**
+             * @default individual
+             * @enum {string}
+             */
+            companyType: "individual" | "team" | "firm";
+            password: string;
+            confirmPassword: string;
+            termsAccepted: boolean;
+            phone?: string;
+            licenseNumber?: string;
+            website?: string | "";
+            businessAddress?: string;
+            /** @default false */
+            marketingConsent: boolean;
+            /** Format: uri */
+            image?: string;
+            /** Format: uri */
+            callbackURL?: string;
+            /** @default true */
+            rememberMe: boolean;
+        };
+        SignInRequest: {
+            /** Format: email */
+            email: string;
+            password: string;
+            /** Format: uri */
+            callbackURL?: string;
+            /** @default true */
+            rememberMe: boolean;
+        };
+        SignOutResponse: {
+            success: boolean;
+        };
+        EmailVerificationResponse: {
+            exists: boolean;
+        };
+        EmailVerificationRequest: {
+            /** Format: email */
+            email: string;
+        };
+        BaseProfile: {
+            /** Format: uuid */
+            workspaceId?: string;
+            /** Format: uuid */
+            userId?: string;
+            /** Format: email */
+            email: string;
+            firstName?: string;
+            lastName?: string;
+            displayName?: string;
+            bio?: string;
+            /** @enum {string} */
+            role?: "owner" | "admin" | "member" | "viewer";
+            phone?: string;
+            licenseNumber?: string;
+            avatarUrl?: string;
+            specialties?: string[];
+            /** @default true */
+            isActive: boolean;
+            preferences?: {
+                [key: string]: unknown;
+            };
+        };
+        ProfileResponse: components["schemas"]["BaseProfile"] & {
+            /** Format: uuid */
+            id: string;
+            invitedAt?: string;
+            joinedAt?: string;
+            /** Format: uuid */
+            invitedBy?: string;
+            lastLoginAt?: string;
+            createdAt: string;
+            updatedAt: string;
+        };
+        UpdateProfileResponse: {
+            id: string;
+            workspaceId: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+            role: string;
+            phone?: string;
+            licenseNumber?: string;
+            bio?: string;
+            avatarUrl?: string;
+            specialties: string[];
+            isActive: boolean;
+            preferences?: unknown;
+            updatedAt: string;
+            operationsCompleted: {
+                profileUpdated: boolean;
+                avatarUpdated?: boolean;
+            };
+            warnings?: string[];
+        };
+        ProfilePreferences: {
+            notifications?: {
+                emailNotifications: boolean;
+                pushNotifications: boolean;
+                listingUpdates: boolean;
+                teamUpdates: boolean;
+                systemUpdates: boolean;
+            };
+            display?: {
+                timezone: string;
+                dateFormat: string;
+                currency: string;
+                language: string;
+            };
+            privacy?: {
+                /** @enum {string} */
+                profileVisibility: "team" | "public" | "private";
+                /** @enum {string} */
+                contactVisibility: "team" | "public" | "private";
+            };
+        };
+        UpdateProfileRequest: {
+            firstName?: string;
+            lastName?: string;
+            displayName?: string;
+            bio?: string;
+            phone?: string;
+            licenseNumber?: string;
+            /** Format: uuid */
+            avatarFileId?: string;
+            specialties?: string[];
+            preferences?: components["schemas"]["ProfilePreferences"];
+        };
+        BaseFile: {
+            /** Format: uuid */
+            workspaceId: string;
+            /** Format: uuid */
+            uploadedBy: string;
+            fileName: string;
+            originalName: string;
+            mimeType: string;
+            fileSize: number;
+            /** @enum {string} */
+            fileType: "document" | "image" | "video" | "audio" | "other";
+            storagePath: string;
+            entityType?: string;
+            /** Format: uuid */
+            entityId?: string;
+            /** @default false */
+            isPublic: boolean;
+            metadata?: {
+                [key: string]: unknown;
+            };
+        };
+        File: components["schemas"]["BaseFile"] & {
+            /** Format: uuid */
+            id: string;
+            createdAt: string;
+            updatedAt: string;
+            signedUrl?: string;
+            canDownload?: boolean;
+            canDelete?: boolean;
+            canUpdate?: boolean;
+        };
+        ProcessingStatus: {
+            /** @enum {string} */
+            status: "pending" | "processing" | "completed" | "failed";
+            progress?: number;
+            estimatedCompletion?: string;
+        };
+        UploadFileResponse: {
+            success: boolean;
+            file: components["schemas"]["File"];
+            processing?: components["schemas"]["ProcessingStatus"];
+        };
+        UploadFileRequest: {
+            /** @enum {string} */
+            fileType: "document" | "image" | "video" | "audio" | "other";
+            entityType?: string;
+            /** Format: uuid */
+            entityId?: string;
+            /** @default false */
+            isPublic: boolean;
+        };
+        UploadFileFormData: components["schemas"]["UploadFileRequest"] & {
+            /** @description The file to upload */
+            file?: unknown;
+        };
+        GetFileResponse: components["schemas"]["BaseFile"] & {
+            /** Format: uuid */
+            id: string;
+            createdAt: string;
+            updatedAt: string;
+            signedUrl?: string;
+            canDownload?: boolean;
+            canDelete?: boolean;
+            canUpdate?: boolean;
+        };
+        DeleteResponse: {
+            success: boolean;
+            message: string;
+            /** Format: uuid */
+            deletedId: string;
+            deletedAt: string;
+        };
+        LogItem: {
+            /** Format: uuid */
+            id: string;
+            method: string;
+            url: string;
+            path: string;
+            statusCode?: number;
+            duration?: number;
+            userAgent?: string;
+            ipAddress?: string;
+            /** Format: uuid */
+            userId?: string;
+            /** Format: uuid */
+            workspaceId: string;
+            errorMessage?: string;
+            createdAt: string;
+            requestHeaders?: {
+                [key: string]: string;
+            } | null;
+            requestBody?: unknown;
+            responseBody?: unknown;
+            responseHeaders?: {
+                [key: string]: string;
+            } | null;
+        };
+        Pagination: {
+            page: number;
+            limit: number;
+            total: number;
+            totalPages: number;
+            hasNext: boolean;
+            hasPrev: boolean;
+        };
+        LogsByPathResponse: {
+            data: components["schemas"]["LogItem"][];
+            pagination: components["schemas"]["Pagination"];
+            summary: {
+                path: string;
+                totalRequests: number;
+                method?: string;
+                statusCode?: number;
+            };
+        };
+        BaseApiLog: {
+            /** Format: uuid */
+            workspaceId: string;
+            /** Format: uuid */
+            userId?: string;
+            method: string;
+            url: string;
+            path: string;
+            statusCode?: number;
+            duration?: number;
+            userAgent?: string;
+            ipAddress?: string;
+            errorMessage?: string;
+            requestHeaders?: {
+                [key: string]: string;
+            } | null;
+            requestBody?: unknown;
+            responseBody?: unknown;
+            responseHeaders?: {
+                [key: string]: string;
+            } | null;
+        };
+        LogDetail: components["schemas"]["BaseApiLog"] & {
+            /** Format: uuid */
+            id: string;
+            createdAt: string;
+            updatedAt: string;
+        };
+        OrganizationResponse: {
+            id: string;
+            name: string;
+            slug: string | null;
+            logo: string | null;
+            companyType: string | null;
+            createdAt: string;
+            metadata: string | null;
+        };
+        UpdateOrganizationRequest: {
+            name?: string;
+            /** Format: uri */
+            logo?: string;
+            metadata?: {
+                [key: string]: unknown;
+            };
+        };
+        Member: {
+            id: string;
+            role: string;
+            createdAt: string;
+            user: {
+                id: string;
+                name: string | null;
+                email: string;
+                image: string | null;
+            };
+            profile: {
+                displayName: string | null;
+                firstName: string | null;
+                lastName: string | null;
+            } | null;
+        };
+        MembersListResponse: components["schemas"]["Member"][];
+        InviteMemberRequest: {
+            /** Format: email */
+            email: string;
+            /** @enum {string} */
+            role: "admin" | "member";
+            resend?: boolean;
+        };
+        Invitation: {
+            id: string;
+            organizationId: string;
+            email: string;
+            role: string;
+            status: string;
+            inviterId: string;
+            expiresAt: string;
+            createdAt?: string;
+        };
+        InvitationsListResponse: components["schemas"]["Invitation"][];
+        SuccessResponse: {
+            success: boolean;
+        };
+        UpdateMemberRoleRequest: {
+            /** @enum {string} */
+            role: "admin" | "member";
+        };
+        AcceptInvitationRequest: {
+            invitationId: string;
+        };
+        CancelInvitationRequest: {
+            invitationId: string;
+        };
+        RejectInvitationRequest: {
+            invitationId: string;
+        };
+        PasskeyRegistrationOptions: unknown;
+        PasskeyRegistrationStartRequest: {
+            /** Format: email */
+            email?: string;
+            name: string;
+            /** @enum {string} */
+            authenticatorAttachment?: "platform" | "cross-platform";
+        };
+        PasskeyVerifyRegistrationResponse: {
+            success: boolean;
+            passkey: {
+                id: string;
+                name: string;
+                createdAt?: string | null;
+            } | null;
+        };
+        PasskeyVerifyRegistrationRequest: {
+            id?: string;
+            rawId?: string;
+            type?: string;
+            response?: unknown;
+            name: string;
+        };
+        PasskeyAuthenticationOptions: unknown;
+        PasskeyAuthenticationStartRequest: {
+            /** Format: email */
+            email?: string;
+        };
+        PasskeyVerifyAuthenticationResponse: {
+            success: boolean;
+            session: {
+                id: string;
+                userId: string;
+                expiresAt: string;
+            } | null;
+            user: {
+                id: string;
+                /** Format: email */
+                email: string;
+                name: string;
+            } | null;
+        };
+        PasskeyVerifyAuthenticationRequest: {
+            id?: string;
+            rawId?: string;
+            type?: string;
+            response?: unknown;
+        };
+    };
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
+export type $defs = Record<string, never>;
+export type operations = Record<string, never>;
