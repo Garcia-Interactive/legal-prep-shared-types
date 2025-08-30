@@ -54,11 +54,8 @@ export interface DownloadResponse {
   url: string;
 }
 
-// SSE event types
-export type SSEEventType = 
-  | 'document.update'
-  | 'package.progress'
-  | 'section.update';
+// SSE event types (unified)
+export type SSEEventType = 'mediation.progress';
 
 export interface SSEEvent {
   type: SSEEventType;
