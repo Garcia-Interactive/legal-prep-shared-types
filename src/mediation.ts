@@ -1,4 +1,4 @@
-import { PackageSection, GenerationProgress } from './document';
+import type { PackageSection, GenerationProgress } from './document';
 
 // Error response structure
 export interface ApiErrorResponse {
